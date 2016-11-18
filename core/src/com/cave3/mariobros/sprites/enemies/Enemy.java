@@ -1,4 +1,4 @@
-package com.cave3.mariobros.sprites;
+package com.cave3.mariobros.sprites.enemies;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
@@ -22,7 +22,8 @@ public abstract class Enemy extends Sprite {
         this.screen = screen;
         setPosition(x, y);
         defineEnemy();
-        velocity = new Vector2(1, 0);
+        velocity = new Vector2(-1, -2);
+        b2body.setActive(false);
 
     }
 

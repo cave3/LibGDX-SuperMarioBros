@@ -1,6 +1,5 @@
-package com.cave3.mariobros.sprites;
+package com.cave3.mariobros.sprites.enemies;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -17,7 +16,7 @@ import com.cave3.mariobros.screens.PlayScreen;
  * Created by wrk on 17/11/16.
  */
 
-public class Goomba extends Enemy {
+public class Goomba extends com.cave3.mariobros.sprites.enemies.Enemy {
 
     private float stateTime;
     private Animation walkAnimation;

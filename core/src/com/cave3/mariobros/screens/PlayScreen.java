@@ -17,8 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
-import com.cave3.mariobros.sprites.Enemy;
-import com.cave3.mariobros.sprites.Goomba;
+import com.cave3.mariobros.sprites.enemies.Enemy;
 import com.cave3.mariobros.sprites.Mario;
 import com.cave3.mariobros.tools.B2WorldCreator;
 import com.cave3.mariobros.tools.WorldContactListener;
@@ -105,8 +104,14 @@ public class PlayScreen implements Screen {
         world.step(1/60f, 6, 2);
 
         player.update(dt);
-        for (Enemy enemy : creator.getGoombas())
+        for (Enemy enemy : creator.getGoombas()) {
             enemy.update(dt);
+            // 224 (12 x 16) is the distance from Mario to the screen right side
+            if (enemy.getX() < player.getX() + 224 / MarioBros.PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }
+
         hud.update(dt);
 
         gamecam.position.x = player.b2body.getPosition().x;

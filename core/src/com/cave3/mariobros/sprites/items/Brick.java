@@ -1,13 +1,12 @@
-package com.cave3.mariobros.sprites;
+package com.cave3.mariobros.sprites.items;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.physics.box2d.World;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
 import com.cave3.mariobros.screens.PlayScreen;
+import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 /**
  * Created by wrk on 14/11/16.

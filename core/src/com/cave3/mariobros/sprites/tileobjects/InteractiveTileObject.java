@@ -1,4 +1,4 @@
-package com.cave3.mariobros.sprites;
+package com.cave3.mariobros.sprites.tileobjects;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;

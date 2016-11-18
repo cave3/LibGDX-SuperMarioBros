@@ -12,9 +12,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.screens.PlayScreen;
-import com.cave3.mariobros.sprites.Brick;
-import com.cave3.mariobros.sprites.Coin;
-import com.cave3.mariobros.sprites.Goomba;
+import com.cave3.mariobros.sprites.items.Brick;
+import com.cave3.mariobros.sprites.items.Coin;
+import com.cave3.mariobros.sprites.enemies.Goomba;
 
 /**
  * Created by wrk on 14/11/16.

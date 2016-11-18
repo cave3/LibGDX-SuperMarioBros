@@ -7,8 +7,8 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.cave3.mariobros.MarioBros;
-import com.cave3.mariobros.sprites.Enemy;
-import com.cave3.mariobros.sprites.InteractiveTileObject;
+import com.cave3.mariobros.sprites.enemies.Enemy;
+import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 /**
  * Created by wrk on 14/11/16.
