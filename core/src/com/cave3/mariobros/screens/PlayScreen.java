@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
+import com.cave3.mariobros.sprites.Enemy;
 import com.cave3.mariobros.sprites.Goomba;
 import com.cave3.mariobros.sprites.Mario;
 import com.cave3.mariobros.tools.B2WorldCreator;
@@ -44,10 +45,10 @@ public class PlayScreen implements Screen {
     // Box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
+    private B2WorldCreator creator;
 
     // sprites
     private Mario player;
-    private Goomba goomba;
 
     private Music music;
 
@@ -72,7 +73,7 @@ public class PlayScreen implements Screen {
         world = new World(new Vector2(0, -10), true);
         b2dr = new Box2DDebugRenderer();
 
-        new B2WorldCreator(this);
+        creator = new B2WorldCreator(this);
 
         player = new Mario(this);
 
@@ -81,8 +82,6 @@ public class PlayScreen implements Screen {
         music = MarioBros.manager.get("audio/music/mario_music.ogg", Music.class);
         //music.setLooping(true);
         //music.play();
-
-        goomba = new Goomba(this, 5.64f, .32f);
 
     }
 
@@ -106,7 +105,8 @@ public class PlayScreen implements Screen {
         world.step(1/60f, 6, 2);
 
         player.update(dt);
-        goomba.update(dt);
+        for (Enemy enemy : creator.getGoombas())
+            enemy.update(dt);
         hud.update(dt);
 
         gamecam.position.x = player.b2body.getPosition().x;
@@ -136,7 +136,8 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        goomba.draw(game.batch);
+        for (Enemy enemy : creator.getGoombas())
+            enemy.draw(game.batch);
         game.batch.end();
 
         //render ourBox2DDebugLines
