@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/wrk/Dropbox/WRK.dev/Android/__GDX/02_SuperMario/FAB/GIT/LibGDX-SuperMarioBros/android/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher.png",
+        "source": "/Users/wrk/Dropbox/WRK.dev/Android/__GDX/02_SuperMario/FAB/GIT/LibGDX-SuperMarioBros/android/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
         "merged": "/Users/wrk/Dropbox/WRK.dev/Android/__GDX/02_SuperMario/SuperMario/android/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher.png",
         "source": "/Users/wrk/Dropbox/WRK.dev/Android/__GDX/02_SuperMario/SuperMario/android/res/drawable-xhdpi/ic_launcher.png"
     }
