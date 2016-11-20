@@ -2,6 +2,7 @@ package com.cave3.mariobros.sprites.tileobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.math.Rectangle;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
@@ -13,8 +14,8 @@ import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
  */
 
 public class Brick extends InteractiveTileObject {
-    public Brick(PlayScreen screen, Rectangle bounds) {
-        super(screen, bounds);
+    public Brick(PlayScreen screen, MapObject object) {
+        super(screen, object);
 
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
