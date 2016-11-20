@@ -13,14 +13,21 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
 import com.cave3.mariobros.sprites.enemies.Enemy;
 import com.cave3.mariobros.sprites.Mario;
+import com.cave3.mariobros.sprites.items.Item;
+import com.cave3.mariobros.sprites.items.ItemDef;
+import com.cave3.mariobros.sprites.items.Mushroom;
 import com.cave3.mariobros.tools.B2WorldCreator;
 import com.cave3.mariobros.tools.WorldContactListener;
+
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by wrk on 12/11/16.
@@ -50,6 +57,9 @@ public class PlayScreen implements Screen {
     private Mario player;
 
     private Music music;
+
+    private Array<Item> items;
+    private LinkedBlockingQueue<ItemDef> itemsToSpawn;
 
 
     public PlayScreen(MarioBros game) {
@@ -82,6 +92,23 @@ public class PlayScreen implements Screen {
         //music.setLooping(true);
         //music.play();
 
+        items = new Array<Item>();
+        itemsToSpawn = new LinkedBlockingQueue<ItemDef>();
+
+    }
+
+
+    public void spawnItem(ItemDef idef) {
+        itemsToSpawn.add(idef);
+    }
+
+    public void handleSpawningItems() {
+        if(!itemsToSpawn.isEmpty()) {
+            ItemDef idef = itemsToSpawn.poll();
+            if (idef.type == Mushroom.class) {
+                items.add(new Mushroom(this, idef.position.x, idef.position.y));
+            }
+        }
     }
 
     public TextureAtlas getAtlas() {
@@ -100,6 +127,7 @@ public class PlayScreen implements Screen {
 
     public void update(float dt) {
         handleInput(dt);
+        handleSpawningItems();
 
         world.step(1/60f, 6, 2);
 
@@ -110,6 +138,10 @@ public class PlayScreen implements Screen {
             if (enemy.getX() < player.getX() + 224 / MarioBros.PPM) {
                 enemy.b2body.setActive(true);
             }
+        }
+
+        for (Item item : items) {
+            item.update(dt);
         }
 
         hud.update(dt);
@@ -143,6 +175,8 @@ public class PlayScreen implements Screen {
         player.draw(game.batch);
         for (Enemy enemy : creator.getGoombas())
             enemy.draw(game.batch);
+        for (Item item : items)
+            item.draw(game.batch);
         game.batch.end();
 
         //render ourBox2DDebugLines

@@ -1,4 +1,4 @@
-package com.cave3.mariobros.sprites.items;
+package com.cave3.mariobros.sprites.tileobjects;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -18,8 +18,7 @@ public class Brick extends InteractiveTileObject {
 
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
-
-
+        
     }
 
     @Override
