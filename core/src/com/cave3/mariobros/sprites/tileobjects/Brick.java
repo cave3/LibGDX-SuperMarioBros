@@ -18,7 +18,7 @@ public class Brick extends InteractiveTileObject {
 
         fixture.setUserData(this);
         setCategoryFilter(MarioBros.BRICK_BIT);
-        
+
     }
 
     @Override

@@ -92,8 +92,9 @@ public class Goomba extends com.cave3.mariobros.sprites.enemies.Enemy {
     @Override
     public void draw(Batch batch) {
         // only draw if goomba is not destroyed or if
-        if (!destroyed || stateTime < 1)
+        if (!destroyed || stateTime < 1) {
             super.draw(batch);
+        }
     }
 
     @Override

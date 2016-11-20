@@ -7,7 +7,9 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.cave3.mariobros.MarioBros;
+import com.cave3.mariobros.sprites.Mario;
 import com.cave3.mariobros.sprites.enemies.Enemy;
+import com.cave3.mariobros.sprites.items.Item;
 import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 /**
@@ -41,7 +43,7 @@ public class WorldContactListener implements ContactListener {
                     ((Enemy) fixB.getUserData()).hitOnHead();
                 break;
 
-            //Enemy collides with object (pipes)
+            //Enemy collides with object (pipes, ...)
             case MarioBros.ENEMY_BIT | MarioBros.OBJECT_BIT:
                 if (fixA.getFilterData().categoryBits == MarioBros.ENEMY_BIT)
                     ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
@@ -59,6 +61,23 @@ public class WorldContactListener implements ContactListener {
                 ((Enemy) fixA.getUserData()).reverseVelocity(true, false);
                 ((Enemy) fixB.getUserData()).reverseVelocity(true, false);
                 break;
+
+            //Item collides with object (pipes, ...)
+            case MarioBros.ITEM_BIT | MarioBros.OBJECT_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ITEM_BIT)
+                    ((Item) fixA.getUserData()).reverseVelocity(true, false);
+                else
+                    ((Item) fixB.getUserData()).reverseVelocity(true, false);
+                break;
+
+            //Item collides with Mario
+            case MarioBros.ITEM_BIT | MarioBros.MARIO_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.ITEM_BIT)
+                    ((Item) fixA.getUserData()).use((Mario) fixB.getUserData());
+                else
+                    ((Item) fixB.getUserData()).use((Mario) fixA.getUserData());
+                break;
+
         }
 
     }
