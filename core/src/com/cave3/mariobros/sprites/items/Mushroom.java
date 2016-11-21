@@ -45,8 +45,8 @@ public class Mushroom extends Item {
 
     @Override
     public void use(Mario mario) {
-        //Gdx.app.log("MUSHROOM", "DESTROY");
         destroy();
+        mario.grow();
     }
 
     @Override
