@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
 import com.cave3.mariobros.screens.PlayScreen;
+import com.cave3.mariobros.sprites.Mario;
 import com.cave3.mariobros.sprites.items.ItemDef;
 import com.cave3.mariobros.sprites.items.Mushroom;
 import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
@@ -32,7 +33,7 @@ public class Coin extends InteractiveTileObject {
     }
 
     @Override
-    public void onHeadHit() {
+    public void onHeadHit(Mario mario) {
         Gdx.app.log("Coin", "Collision");
 
         if (getCell().getTile().getId() == BLANK_COIN) {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.cave3.mariobros.MarioBros;
 import com.cave3.mariobros.scenes.Hud;
 import com.cave3.mariobros.screens.PlayScreen;
+import com.cave3.mariobros.sprites.Mario;
 import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
 
 /**
@@ -23,12 +24,15 @@ public class Brick extends InteractiveTileObject {
     }
 
     @Override
-    public void onHeadHit() {
-        Gdx.app.log("Brick", "Collision");
-        setCategoryFilter(MarioBros.DESTROYED_BIT);
-        getCell().setTile(null);
-        Hud.addScore(200);
+    public void onHeadHit(Mario mario) {
+        if (mario.isBig()) {
+            setCategoryFilter(MarioBros.DESTROYED_BIT);
+            getCell().setTile(null);
+            Hud.addScore(200);
 
-        MarioBros.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
+            MarioBros.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
+        }
+
+        MarioBros.manager.get("audio/sounds/bump.wav", Sound.class).play();
     }
 }

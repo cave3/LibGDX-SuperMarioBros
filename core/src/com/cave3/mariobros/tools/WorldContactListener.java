@@ -12,6 +12,8 @@ import com.cave3.mariobros.sprites.enemies.Enemy;
 import com.cave3.mariobros.sprites.items.Item;
 import com.cave3.mariobros.sprites.tileobjects.InteractiveTileObject;
 
+import static com.badlogic.gdx.utils.JsonValue.ValueType.object;
+
 /**
  * Created by wrk on 14/11/16.
  */
@@ -25,16 +27,16 @@ public class WorldContactListener implements ContactListener {
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
-        if (fixA.getUserData() == "head" || fixB.getUserData() == "head") {
-            Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
-            Fixture object = head == fixA ? fixB : fixA;
-
-            if (object.getUserData() != null && InteractiveTileObject.class.isAssignableFrom(object.getUserData().getClass())) {
-                ((InteractiveTileObject)object.getUserData()).onHeadHit();
-            }
-        }
-
         switch (cDef) {
+            // Mario Head collides with brick or coin
+            case MarioBros.MARIO_HEAD_BIT | MarioBros.BRICK_BIT:
+            case MarioBros.MARIO_HEAD_BIT | MarioBros.COIN_BIT:
+                if (fixA.getFilterData().categoryBits == MarioBros.MARIO_HEAD_BIT)
+                    ((InteractiveTileObject)fixB.getUserData()).onHeadHit((Mario) fixA.getUserData());
+                else
+                    ((InteractiveTileObject)fixA.getUserData()).onHeadHit((Mario) fixB.getUserData());
+                break;
+
             //Mario stomps on enemy's head
             case MarioBros.ENEMY_HEAD_BIT | MarioBros.MARIO_BIT:
                 if (fixA.getFilterData().categoryBits == MarioBros.ENEMY_HEAD_BIT)
