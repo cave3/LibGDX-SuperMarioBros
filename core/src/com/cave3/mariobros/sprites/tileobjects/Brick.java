@@ -32,7 +32,6 @@ public class Brick extends InteractiveTileObject {
 
             MarioBros.manager.get("audio/sounds/breakblock.wav", Sound.class).play();
         }
-
         MarioBros.manager.get("audio/sounds/bump.wav", Sound.class).play();
     }
 }

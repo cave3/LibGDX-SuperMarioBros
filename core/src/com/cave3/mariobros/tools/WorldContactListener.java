@@ -55,7 +55,10 @@ public class WorldContactListener implements ContactListener {
 
             //Mario colides with enemy
             case MarioBros.MARIO_BIT | MarioBros.ENEMY_BIT:
-                Gdx.app.log("MARIO", "DIED");
+                if (fixA.getFilterData().categoryBits == MarioBros.MARIO_BIT)
+                    ((Mario) fixA.getUserData()).hit();
+                else
+                    ((Mario) fixA.getUserData()).hit();
                 break;
 
             //Enemies colide with each other
